@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nice Two Each Other</title>
+
+<style>
+
+/* =========================================================
+   NAVIGATION BAR (TOP HEADER)
+   - Site title + hamburger menu button
+========================================================= */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+/* =========================================================
+   HAMBURGER MENU ICON (3 LINES)
+   - Click to open side menu
+========================================================= */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Each line inside hamburger icon */
+.hamburger span {
+  display: block;
+  height: 2.5px;
+  width: 100%;
+  background: #000;
+  border-radius: 2px;
+}
+
+/* Animation: hamburger → X when menu is open */
+.hamburger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+
+/* =========================================================
+   OVERLAY (DARK BACKGROUND)
+   - Appears when menu is open
+   - Clicking it closes menu
+========================================================= */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 99;
+}
+
+.overlay.open {
+  display: block;
+}
+
+/* =========================================================
+   SIDE MENU (SLIDE OUT PANEL)
+   - Right-side navigation drawer
+========================================================= */
+.menu-panel {
+  position: fixed;
+  top: 0;
+  right: -390px; /* hidden off-screen */
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  padding: 80px 20px;
+  transition: right 0.3s ease;
+  z-index: 100;
+}
+.menu-panel a {
+  display: block;          /* makes them stack vertically */
+  padding: 12px 10px;
+  text-decoration: none;   /* removes underline */
+  color: #333;             /* forces consistent color */
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Prevent purple visited links */
+.menu-panel a:visited {
+  color: #333;
+}
+
+/* Hover effect (optional but nice) */
+.menu-panel a:hover {
+  background: #eee;
+}
+
+/* When menu is opened */
+.menu-panel.open {
+  right: 0;
+}
+
+/* =========================================================
+   LIVE SECTION (MAIN PLAYER AREA)
+   - This is your podcast / radio player section
+========================================================= */
+.live-player {
+  padding: 32px 24px;
+  border-bottom: 1px solid #eee;
+}
+
+/* =========================================================
+   EPISODE ROW (PLAY BUTTON + TEXT)
+   - Horizontal layout for controls + title
+========================================================= */
+.episode-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+/* =========================================================
+   PLAY BUTTON (CIRCULAR)
+   - Controls audio play/pause
+========================================================= */
+.play-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* =========================================================
+   EPISODE TEXT (TITLE + DESCRIPTION)
+========================================================= */
+.episode-text h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.episode-text p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #666;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION BAR (TOP OF PAGE)
+========================================================= -->
+<nav>
+  <span>Nice Two Each Other</span>
+
+  <!-- Hamburger button opens/closes menu -->
+  <button class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- =========================================================
+     LIVE AUDIO / EPISODE PLAYER SECTION
+     - Main interaction area of your site
+========================================================= -->
+<section class="live-player">
+
+  <!-- Row containing play button + episode info -->
+  <div class="episode-row">
+
+    <!-- Play/Pause button controlled by JavaScript -->
+    <button id="playBtn" class="play-button">▶</button>
+
+    <!-- Episode title + description -->
+    <div class="episode-text">
+      <h2>Episode 1 — Title Here</h2>
+    
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       AUDIO SOURCE (HIDDEN PLAYER)
+       - This is the actual audio stream
+       - Controlled via JavaScript button
+  ========================================================= -->
+  <audio id="audioStream">
+    <source src="YOUR_STREAM_URL" type="audio/mpeg">
+  </audio>
+
+</section>
+
+<!-- =========================================================
+     OVERLAY (DARK BACKGROUND WHEN MENU OPEN)
+========================================================= -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- =========================================================
+     SIDE MENU (NAVIGATION DRAWER)
+========================================================= -->
+<div id="menu" class="menu-panel">
+
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="archive.html">Archive</a>
+
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT (INTERACTIVITY)
+     - Menu toggle
+     - Play/pause audio control
+========================================================= -->
+<script>
+
+/* =========================
+   MENU TOGGLE FUNCTION
+   Opens/closes side menu
+========================= */
+function toggleMenu() {
+  document.querySelector('.hamburger').classList.toggle('open');
+  document.getElementById('menu').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+
+/* =========================
+   AUDIO CONTROLS
+   - Play/pause button logic
+========================= */
+const audio = document.getElementById("audioStream");
+const btn = document.getElementById("playBtn");
+
+let isPlaying = false;
+
+/* Toggle play/pause on click */
+btn.addEventListener("click", () => {
+
+  if (!isPlaying) {
+    audio.play();
+    btn.textContent = "❚❚"; // pause icon
+  } else {
+    audio.pause();
+    btn.textContent = "▶"; // play icon
+  }
+
+  isPlaying = !isPlaying;
+});
+
+</script>
+
+</body>
+</html>
