@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Archive</title>
+
+
+<style>
+
+/* ==========================
+   PAGE BACKGROUND
+   - Controls the entire page
+   - Makes archive background black
+========================== */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+}
+
+
+/* ==========================
+   ARCHIVE IMAGE GRID
+   - Creates Instagram-style layout
+   - Controls spacing around the whole grid
+========================== */
+
+.archive-grid {
+
+  display: grid;
+
+  /* Creates 3 images per row */
+  grid-template-columns: repeat(3, 1fr);
+
+  /* Space between images */
+  gap: 8px;
+
+
+  /* Space from top of screen */
+  padding-top: 95px;
+
+
+  /* Space from left and right edges */
+  padding-left: 40px;
+  padding-right: 40px;
+
+
+  /* Space from bottom of page */
+  padding-bottom: 40px;
+
+}
+
+
+
+/* ==========================
+   INDIVIDUAL IMAGE BOX
+   - Controls each archive thumbnail
+========================== */
+
+.archive-item {
+
+  overflow: hidden;
+
+}
+
+
+
+/* ==========================
+   IMAGE STYLE
+   - Makes every image square
+   - Controls how images crop
+========================== */
+
+.archive-item img {
+
+  width: 100%;
+
+  /* Makes images perfect squares */
+  aspect-ratio: 3 / 4;
+
+  /* Crops image without stretching */
+  object-fit: cover;
+
+  /* Makes cursor become clickable */
+  cursor: pointer;
+
+}
+
+
+
+/* ==========================
+   IMAGE HOVER EFFECT
+   - Slight fade when hovering
+========================== */
+
+.archive-item img:hover {
+
+  opacity: 0.8;
+
+}
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- ==========================
+     ARCHIVE GRID
+     - Add new episodes by copying
+       another archive-item block
+========================== -->
+
+
+<div class="archive-grid">
+
+
+  <!-- Episode 1 -->
+  <div class="archive-item">
+    <img src="images/episode1.jpg" alt="Episode 1">
+  </div>
+
+
+  <!-- Episode 2 -->
+  <div class="archive-item">
+    <img src="images/episode2.jpg" alt="Episode 2">
+  </div>
+
+
+  <!-- Episode 3 -->
+  <div class="archive-item">
+    <img src="images/episode3.jpg" alt="Episode 3">
+  </div>
+
+
+</div>
+
+
+
+</body>
+
+</html>
