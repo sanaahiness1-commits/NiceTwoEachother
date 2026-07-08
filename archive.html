@@ -1,191 +1,565 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <title>Archive</title>
 
 
+
 <style>
+
 
 /* ==========================
    PAGE BACKGROUND
-   - Controls the entire page
-   - Makes archive background black
+   - Makes archive page black
 ========================== */
 
 body {
+
   margin: 0;
+
   font-family: Arial, sans-serif;
+
   background: #000;
+
 }
+
+
+
+
+
+
+/* ==========================
+   HAMBURGER MENU BUTTON
+   - Floating button like Instagram
+   - Sits in top right corner
+========================== */
+
+
+.hamburger {
+
+
+  /* Keeps button floating above images */
+  position: fixed;
+
+
+  /* Distance from top */
+  top: 25px;
+
+
+  /* Distance from right */
+  right: 30px;
+
+
+  /* Keeps it above everything */
+  z-index: 200;
+
+
+
+  display: flex;
+
+  flex-direction: column;
+
+
+  justify-content: space-between;
+
+
+  width: 28px;
+
+  height: 20px;
+
+
+  background: none;
+
+  border: none;
+
+
+  cursor: pointer;
+
+
+}
+
+
+
+
+
+
+/* Hamburger lines */
+
+.hamburger span {
+
+
+  display: block;
+
+
+  height: 3px;
+
+
+  width: 100%;
+
+
+  /* WHITE because background is black */
+
+  background: white;
+
+
+  border-radius: 5px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   SIDE MENU
+   - Slides in when hamburger clicked
+========================== */
+
+
+.menu-panel {
+
+
+  position: fixed;
+
+
+  top: 0;
+
+
+  right: -350px;
+
+
+  width: 280px;
+
+
+  height: 100%;
+
+
+  background: white;
+
+
+  padding: 80px 20px;
+
+
+  transition: right .3s ease;
+
+
+  z-index: 150;
+
+
+}
+
+
+
+/* Opens menu */
+
+.menu-panel.open {
+
+
+  right: 0;
+
+
+}
+
+
+
+
+
+/* Menu links */
+
+
+.menu-panel a {
+
+
+  display: block;
+
+
+  padding: 15px 10px;
+
+
+  text-decoration: none;
+
+
+  color: #333;
+
+
+  font-size: 18px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   DARK OVERLAY
+   - Covers screen when menu opens
+========================== */
+
+
+.overlay {
+
+
+  display: none;
+
+
+  position: fixed;
+
+
+  inset: 0;
+
+
+  background: rgba(0,0,0,.4);
+
+
+  z-index: 100;
+
+
+}
+
+
+
+.overlay.open {
+
+
+  display: block;
+
+
+}
+
+
+
+
+
+
 
 
 /* ==========================
    ARCHIVE IMAGE GRID
-   - Creates Instagram-style layout
-   - Controls spacing around the whole grid
+   - Instagram style layout
 ========================== */
+
 
 .archive-grid {
 
+
   display: grid;
 
-  /* Creates 3 images per row */
+
+  /* Three images across */
+
   grid-template-columns: repeat(3, 1fr);
 
+
   /* Space between images */
+
   gap: 8px;
 
 
-  /* Space from top of screen */
+
+  /* Space from top */
+
   padding-top: 95px;
 
 
-  /* Space from left and right edges */
+
+  /* Side borders */
+
   padding-left: 40px;
+
   padding-right: 40px;
 
 
-  /* Space from bottom of page */
+
   padding-bottom: 40px;
 
+
 }
+
+
+
+
+
 
 
 
 /* ==========================
-   INDIVIDUAL IMAGE BOX
-   - Controls each archive thumbnail
+   IMAGE BOX
 ========================== */
+
 
 .archive-item {
 
+
   overflow: hidden;
 
+
 }
+
+
+
+
 
 
 
 /* ==========================
    IMAGE STYLE
-   - Makes every image square
-   - Controls how images crop
 ========================== */
+
 
 .archive-item img {
 
+
   width: 100%;
 
-  /* Makes images perfect squares */
+
+  /* Portrait rectangle */
+
   aspect-ratio: 3 / 4;
 
-  /* Crops image without stretching */
+
   object-fit: cover;
 
-  /* Makes cursor become clickable */
+
   cursor: pointer;
+
 
 }
 
 
 
-/* ==========================
-   IMAGE HOVER EFFECT
-   - Slight fade when hovering
-========================== */
+
 
 .archive-item img:hover {
 
-  opacity: 0.8;
+
+  opacity: .8;
+
 
 }
+
 
 
 </style>
 
+
 </head>
+
+
+
 
 
 
 <body>
 
 
+
+
+
+
 <!-- ==========================
-     ARCHIVE GRID
-     - Add new episodes by copying
-       another archive-item block
+     HAMBURGER BUTTON
 ========================== -->
 
 
-<div class="archive-grid">
+<button class="hamburger" onclick="toggleMenu()">
 
 
-  <!-- Episode 10 -->
-  <div class="archive-item">
-    <img src="images/episode10-Finale.jpg" alt="Episode 1">
-  </div>
+<span></span>
+
+<span></span>
+
+<span></span>
 
 
-  <!-- Episode 9 -->
-  <div class="archive-item">
-    <img src="images/episode9-idk.png" alt="Episode 2">
-  </div>
+</button>
 
 
-  <!-- Episode 8 -->
-  <div class="archive-item">
-    <img src="images/episode8-Jason.png" alt="Episode 3">
-  </div>
-
-   <!-- Episode 7 (Latest) -->
-  <div class="archive-item">
-    <img src="images/episode7-whats-going-on.png" alt="Episode 7">
-  </div>
 
 
-  <!-- Episode 6 -->
-  <div class="archive-item">
-    <img src="images/episode6-rando.png" alt="Episode 6">
-  </div>
 
 
-  <!-- Episode 5 -->
-  <div class="archive-item">
-    <img src="images/episode5-bread&Butter.png" alt="Episode 5">
-  </div>
 
 
-  <!-- Episode 4 -->
-  <div class="archive-item">
-    <img src="images/episode4-hiphop.png" alt="Episode 4">
-  </div>
+<!-- ==========================
+     DARK OVERLAY
+========================== -->
 
 
-  <!-- Episode 3 -->
-  <div class="archive-item">
-    <img src="images/episode3-no-Sanaa.png" alt="Episode 3">
-  </div
+<div 
+class="overlay" 
+id="overlay" 
+onclick="toggleMenu()">
+</div>
 
 
-  <!-- Episode 2 -->
-  <div class="archive-item">
-    <img src="images/episode2-political-histories.png" alt="Episode 2">
-  </div>
 
 
-  <!-- Episode 1 (Oldest) -->
-  <div class="archive-item">
-    <img src="images/episode1-pink.png" alt="Episode 1">
-  </div>
+
+
+
+
+<!-- ==========================
+     SIDE MENU
+========================== -->
+
+
+<div id="menu" class="menu-panel">
+
+
+<a href="index.html">
+Home
+</a>
+
+
+<a href="#">
+About
+</a>
+
+
+<a href="archive.html">
+Archive
+</a>
 
 
 </div>
 
 
 
+
+
+
+
+
+<!-- ==========================
+     ARCHIVE GRID
+     - Latest episodes first
+========================== -->
+
+
+<div class="archive-grid">
+
+
+
+<div class="archive-item">
+<img src="images/episode10-Finale.jpg" alt="Episode 10">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode9-idk.png" alt="Episode 9">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode8-Jason.png" alt="Episode 8">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode7-whats-going-on.png" alt="Episode 7">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode6-rando.png" alt="Episode 6">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode5-bread&Butter.png" alt="Episode 5">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode4-hiphop.png" alt="Episode 4">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode3-no-Sanaa.png" alt="Episode 3">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode2-political-histories.png" alt="Episode 2">
+</div>
+
+
+
+<div class="archive-item">
+<img src="images/episode1-pink.png" alt="Episode 1">
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- ==========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+
+function toggleMenu() {
+
+
+  document
+  .querySelector(".hamburger")
+  .classList
+  .toggle("open");
+
+
+
+  document
+  .getElementById("menu")
+  .classList
+  .toggle("open");
+
+
+
+  document
+  .getElementById("overlay")
+  .classList
+  .toggle("open");
+
+
+}
+
+
+</script>
+
+
+
 </body>
+
 
 </html>

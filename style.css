@@ -1,0 +1,612 @@
+/* =========================================================
+   GLOBAL WEBSITE SETTINGS
+   - Applies to every page
+   - Controls default spacing and font
+========================================================= */
+
+body {
+
+  /* Removes browser default margin */
+  margin: 0;
+
+
+  /* Default website font */
+  font-family: Arial, sans-serif;
+
+}
+
+
+
+
+
+
+/* =========================================================
+   NAVIGATION BAR
+   - Used on homepage
+   - Contains website name + hamburger
+========================================================= */
+
+
+nav {
+
+
+  /* Places title and hamburger on opposite sides */
+  display: flex;
+
+
+  /* Pushes items apart */
+  justify-content: space-between;
+
+
+  /* Centers items vertically */
+  align-items: center;
+
+
+  /* Space inside bar */
+  padding: 0 24px;
+
+
+  /* Height of navigation */
+  height: 60px;
+
+
+  /* White background */
+  background: white;
+
+
+  /* Bottom border line */
+  border-bottom: 1px solid #eee;
+
+
+}
+
+
+
+
+
+
+
+/* =========================================================
+   HAMBURGER MENU BUTTON
+   - The three lines users click
+   - Opens the side menu
+========================================================= */
+
+
+.hamburger {
+
+
+  /* Stacks lines vertically */
+  display: flex;
+
+
+  flex-direction: column;
+
+
+  /* Creates space between lines */
+  justify-content: space-between;
+
+
+  /* Size of button */
+  width: 28px;
+
+  height: 20px;
+
+
+  /* Removes default button design */
+  background: none;
+
+  border: none;
+
+
+  /* Cursor changes when hovering */
+  cursor: pointer;
+
+
+}
+
+
+
+
+
+
+/* =========================================================
+   HAMBURGER LINES
+   - Controls the three bars
+========================================================= */
+
+
+.hamburger span {
+
+
+  /* Allows size control */
+  display: block;
+
+
+  /* Thickness */
+  height: 3px;
+
+
+  /* Length */
+  width: 100%;
+
+
+  /* Default color for homepage */
+  background: black;
+
+
+  /* Rounded ends */
+  border-radius: 5px;
+
+
+}
+
+
+
+
+
+
+/* =========================================================
+   ARCHIVE PAGE HAMBURGER
+   - Changes hamburger from black to white
+   - Makes it float like Instagram
+========================================================= */
+
+
+/*
+IMPORTANT:
+
+Your archive page does not have a white nav bar,
+so we need the hamburger to float above the images.
+
+This section ONLY affects archive.html.
+*/
+
+
+.archive-page .hamburger {
+
+
+  /* Keeps it visible while scrolling */
+  position: fixed;
+
+
+  /* Distance from top */
+  top: 25px;
+
+
+  /* Distance from right side */
+  right: 30px;
+
+
+  /* Places above images */
+  z-index: 200;
+
+
+}
+
+
+
+/* Makes hamburger lines white on black background */
+
+.archive-page .hamburger span {
+
+
+  background: white;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   SIDE MENU
+   - Hidden off screen
+   - Slides in when hamburger clicked
+========================================================= */
+
+
+.menu-panel {
+
+
+  /* Attaches menu to screen */
+  position: fixed;
+
+
+  top: 0;
+
+
+  right: -350px;
+
+
+  /* Width of menu */
+  width: 280px;
+
+
+  /* Full height */
+  height: 100%;
+
+
+  /* Menu background */
+  background: white;
+
+
+  /* Space inside menu */
+  padding: 80px 20px;
+
+
+  /* Animation speed */
+  transition: right .3s ease;
+
+
+  /* Keeps menu above everything */
+  z-index: 100;
+
+
+
+}
+
+
+
+
+
+/* When JavaScript adds "open",
+   menu becomes visible */
+
+
+.menu-panel.open {
+
+
+  right: 0;
+
+
+}
+
+
+
+
+
+
+
+/* =========================================================
+   SIDE MENU LINKS
+   - Home
+   - About
+   - Archive
+========================================================= */
+
+
+.menu-panel a {
+
+
+  /* Forces links to stack vertically */
+  display: block;
+
+
+  /* Space around each link */
+  padding: 15px 10px;
+
+
+  /* Removes underline */
+  text-decoration: none;
+
+
+  /* Text color */
+  color: #333;
+
+
+  /* Font size */
+  font-size: 18px;
+
+
+}
+
+
+
+
+
+
+/* Hover effect when mouse is over links */
+
+
+.menu-panel a:hover {
+
+
+  background: #eee;
+
+
+}
+
+
+
+
+
+
+
+/* =========================================================
+   DARK OVERLAY
+   - Dark layer behind menu
+   - Appears when menu opens
+========================================================= */
+
+
+.overlay {
+
+
+  /* Hidden normally */
+  display: none;
+
+
+  /* Covers entire screen */
+  position: fixed;
+
+
+  inset: 0;
+
+
+  /* Transparent black */
+  background: rgba(0,0,0,.4);
+
+
+  /* Below menu but above page */
+  z-index: 99;
+
+
+}
+
+
+
+
+
+/* Shows overlay */
+
+
+.overlay.open {
+
+
+  display: block;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   HOMEPAGE LIVE AUDIO PLAYER
+   - Controls the episode section
+========================================================= */
+
+
+.live-player {
+
+
+  /* Space around player */
+  padding: 32px 24px;
+
+
+}
+
+
+
+
+
+/* Play button + episode title layout */
+
+
+.episode-row {
+
+
+  /* Places items horizontally */
+  display: flex;
+
+
+  /* Centers vertically */
+  align-items: center;
+
+
+  /* Space between button and text */
+  gap: 15px;
+
+
+}
+
+
+
+
+
+
+
+/* Circular play button */
+
+
+.play-button {
+
+
+  width: 45px;
+
+
+  height: 45px;
+
+
+  /* Makes perfect circle */
+  border-radius: 50%;
+
+
+  border: none;
+
+
+  /* Black button */
+  background: black;
+
+
+  /* White icon */
+  color: white;
+
+
+  cursor: pointer;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   ARCHIVE PAGE
+   - Black Instagram-style gallery
+========================================================= */
+
+
+/*
+This class comes from:
+
+<body class="archive-page">
+
+in archive.html
+*/
+
+
+.archive-page {
+
+
+  /* Black background */
+  background: black;
+
+
+  /* Allows background to fill screen */
+  min-height: 100vh;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   ARCHIVE IMAGE GRID
+   - Creates 3-column Instagram layout
+========================================================= */
+
+
+.archive-grid {
+
+
+  /* Turns images into grid */
+  display: grid;
+
+
+  /* Three images across */
+  grid-template-columns: repeat(3, 1fr);
+
+
+  /* Space between images */
+  gap: 8px;
+
+
+  /* Moves grid down from top */
+  padding-top: 95px;
+
+
+  /* Space on left/right edges */
+  padding-left: 40px;
+
+  padding-right: 40px;
+
+
+  /* Bottom breathing room */
+  padding-bottom: 40px;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   IMAGE CONTAINER
+========================================================= */
+
+
+.archive-item {
+
+
+  /* Prevents image overflow */
+  overflow: hidden;
+
+
+}
+
+
+
+
+
+
+
+/* =========================================================
+   ARCHIVE IMAGES
+========================================================= */
+
+
+.archive-item img {
+
+
+  /* Fill grid box */
+  width: 100%;
+
+
+  /* Portrait rectangle shape */
+  aspect-ratio: 3 / 4;
+
+
+  /* Crops image nicely */
+  object-fit: cover;
+
+
+  /* Shows clickable cursor */
+  cursor: pointer;
+
+
+}
+
+
+
+
+
+
+
+/* Hover effect */
+
+
+.archive-item img:hover {
+
+
+  /* Slight transparency */
+  opacity: .8;
+
+
+}
