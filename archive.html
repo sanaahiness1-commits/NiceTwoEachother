@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
 <title>Archive</title>
 
 
-
 <style>
 
-
-/* ==========================
-   PAGE BACKGROUND
-   - Makes archive page black
-========================== */
+/* =========================================================
+   PAGE SETTINGS
+   - Black archive background
+========================================================= */
 
 body {
 
@@ -28,46 +22,32 @@ body {
 
   font-family: Arial, sans-serif;
 
-  background: #000;
+  background: black;
 
 }
 
 
 
-
-
-
-/* ==========================
-   HAMBURGER MENU BUTTON
-   - Floating button like Instagram
-   - Sits in top right corner
-========================== */
-
+/* =========================================================
+   HAMBURGER MENU
+   - Floating white button
+   - Top right like Instagram
+========================================================= */
 
 .hamburger {
 
-
-  /* Keeps button floating above images */
   position: fixed;
 
-
-  /* Distance from top */
   top: 25px;
 
-
-  /* Distance from right */
   right: 30px;
 
-
-  /* Keeps it above everything */
   z-index: 200;
-
 
 
   display: flex;
 
   flex-direction: column;
-
 
   justify-content: space-between;
 
@@ -81,67 +61,44 @@ body {
 
   border: none;
 
-
   cursor: pointer;
-
 
 }
 
 
 
-
-
-
-/* Hamburger lines */
+/* Three white hamburger lines */
 
 .hamburger span {
 
-
   display: block;
-
-
-  height: 3px;
-
 
   width: 100%;
 
-
-  /* WHITE because background is black */
+  height: 3px;
 
   background: white;
 
-
   border-radius: 5px;
-
 
 }
 
 
 
-
-
-
-
-/* ==========================
+/* =========================================================
    SIDE MENU
-   - Slides in when hamburger clicked
-========================== */
-
+========================================================= */
 
 .menu-panel {
 
-
   position: fixed;
 
-
   top: 0;
-
 
   right: -350px;
 
 
   width: 280px;
-
 
   height: 100%;
 
@@ -157,7 +114,6 @@ body {
 
   z-index: 150;
 
-
 }
 
 
@@ -166,59 +122,39 @@ body {
 
 .menu-panel.open {
 
-
   right: 0;
 
-
 }
-
-
 
 
 
 /* Menu links */
 
-
 .menu-panel a {
-
 
   display: block;
 
-
   padding: 15px 10px;
-
-
-  text-decoration: none;
-
 
   color: #333;
 
+  text-decoration: none;
 
   font-size: 18px;
-
 
 }
 
 
 
-
-
-
-
-/* ==========================
+/* =========================================================
    DARK OVERLAY
-   - Covers screen when menu opens
-========================== */
-
+========================================================= */
 
 .overlay {
 
-
   display: none;
 
-
   position: fixed;
-
 
   inset: 0;
 
@@ -228,106 +164,56 @@ body {
 
   z-index: 100;
 
-
 }
-
 
 
 .overlay.open {
 
-
   display: block;
-
 
 }
 
 
 
-
-
-
-
-
-/* ==========================
-   ARCHIVE IMAGE GRID
-   - Instagram style layout
-========================== */
+/* =========================================================
+   ARCHIVE GRID
+   - Instagram style 3 columns
+========================================================= */
 
 
 .archive-grid {
 
-
   display: grid;
 
-
-  /* Three images across */
 
   grid-template-columns: repeat(3, 1fr);
 
 
-  /* Space between images */
-
   gap: 8px;
 
 
-
-  /* Space from top */
-
   padding-top: 95px;
 
-
-
-  /* Side borders */
 
   padding-left: 40px;
 
   padding-right: 40px;
 
 
-
   padding-bottom: 40px;
 
-
 }
 
 
 
-
-
-
-
-
-/* ==========================
-   IMAGE BOX
-========================== */
-
-
-.archive-item {
-
-
-  overflow: hidden;
-
-
-}
-
-
-
-
-
-
-
-/* ==========================
-   IMAGE STYLE
-========================== */
-
+/* =========================================================
+   NORMAL IMAGE CARDS
+========================================================= */
 
 .archive-item img {
 
-
   width: 100%;
 
-
-  /* Portrait rectangle */
 
   aspect-ratio: 3 / 4;
 
@@ -337,17 +223,136 @@ body {
 
   cursor: pointer;
 
+}
+
+
+.archive-item img:hover {
+
+  opacity: .8;
 
 }
 
 
 
+/* =========================================================
+   FLIP CARD
+   - Used for episode playlist cards
+========================================================= */
 
 
-.archive-item img:hover {
+.flip-card {
 
 
-  opacity: .8;
+  /* Creates 3D flipping effect */
+
+  perspective: 1000px;
+
+
+}
+
+
+
+/* Holds both sides */
+
+.flip-card-inner {
+
+
+  position: relative;
+
+
+  width: 100%;
+
+
+  aspect-ratio: 3 / 4;
+
+
+  transition: transform .6s;
+
+
+  transform-style: preserve-3d;
+
+
+}
+
+
+
+/* Rotates card */
+
+.flip-card.flipped .flip-card-inner {
+
+  transform: rotateY(180deg);
+
+}
+
+
+
+/* Front and back overlap */
+
+.flip-front,
+.flip-back {
+
+
+  position: absolute;
+
+
+  width: 100%;
+
+  height: 100%;
+
+
+  top: 0;
+
+  left: 0;
+
+
+  backface-visibility: hidden;
+
+
+}
+
+
+
+/* Front image */
+
+.flip-front img {
+
+
+  width:100%;
+
+  height:100%;
+
+
+  object-fit:cover;
+
+
+}
+
+
+
+/* Spotify side */
+
+.flip-back {
+
+
+  transform: rotateY(180deg);
+
+
+}
+
+
+
+/* Spotify iframe fills card */
+
+.flip-back iframe {
+
+
+  width:100%;
+
+
+  height:100%;
+
+
+  border:none;
 
 
 }
@@ -361,48 +366,33 @@ body {
 
 
 
-
-
-
 <body>
 
 
 
-
-
-
-<!-- ==========================
+<!-- =========================================================
      HAMBURGER BUTTON
-========================== -->
+========================================================= -->
 
 
 <button class="hamburger" onclick="toggleMenu()">
 
-
 <span></span>
 
 <span></span>
 
 <span></span>
-
 
 </button>
 
 
 
 
-
-
-
-
-<!-- ==========================
-     DARK OVERLAY
-========================== -->
-
+<!-- DARK OVERLAY -->
 
 <div 
-class="overlay" 
-id="overlay" 
+class="overlay"
+id="overlay"
 onclick="toggleMenu()">
 </div>
 
@@ -410,13 +400,7 @@ onclick="toggleMenu()">
 
 
 
-
-
-
-<!-- ==========================
-     SIDE MENU
-========================== -->
-
+<!-- SIDE MENU -->
 
 <div id="menu" class="menu-panel">
 
@@ -442,13 +426,9 @@ Archive
 
 
 
-
-
-
-<!-- ==========================
+<!-- =========================================================
      ARCHIVE GRID
-     - Latest episodes first
-========================== -->
+========================================================= -->
 
 
 <div class="archive-grid">
@@ -456,103 +436,166 @@ Archive
 
 
 <div class="archive-item">
-<img src="images/episode10-Finale.jpg" alt="Episode 10">
+<img src="images/episode10-Finale.jpg">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode9-idk.png" alt="Episode 9">
+<img src="images/episode9-idk.png">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode8-Jason.png" alt="Episode 8">
+<img src="images/episode8-Jason.png">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode7-whats-going-on.png" alt="Episode 7">
+<img src="images/episode7-whats-going-on.png">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode6-rando.png" alt="Episode 6">
+<img src="images/episode6-rando.png">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode5-bread&Butter.png" alt="Episode 5">
+<img src="images/episode5-bread&Butter.png">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode4-hiphop.png" alt="Episode 4">
+<img src="images/episode4-hiphop.png">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode3-no-Sanaa.png" alt="Episode 3">
+<img src="images/episode3-no-Sanaa.png">
 </div>
 
 
 
 <div class="archive-item">
-<img src="images/episode2-political-histories.png" alt="Episode 2">
-</div>
-
-
-
-<div class="archive-item">
-<img src="images/episode1-pink.png" alt="Episode 1">
-</div>
-
-
-
+<img src="images/episode2-political-histories.png">
 </div>
 
 
 
 
 
+<!-- =========================================================
+     EPISODE 1 FLIP CARD
+========================================================= -->
 
-<!-- ==========================
-     JAVASCRIPT
-========================== -->
+
+<div class="archive-item flip-card">
+
+
+<div class="flip-card-inner">
+
+
+
+<!-- FRONT -->
+
+<div class="flip-front">
+
+<img src="images/episode1-pink.png">
+
+</div>
+
+
+
+
+<!-- BACK -->
+
+<div class="flip-back">
+
+
+<iframe
+
+src="https://open.spotify.com/embed/playlist/4mlzSpy8uVb1aNuPQIvYMR?utm_source=generator&theme=0&si=1e5f9b62a208423e"
+
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+
+</iframe>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
 
 <script>
 
 
-function toggleMenu() {
+/* =========================================================
+   OPEN/CLOSE MENU
+========================================================= */
 
 
-  document
-  .querySelector(".hamburger")
-  .classList
-  .toggle("open");
+function toggleMenu(){
 
 
-
-  document
-  .getElementById("menu")
-  .classList
-  .toggle("open");
+document.querySelector(".hamburger")
+.classList.toggle("open");
 
 
+document.getElementById("menu")
+.classList.toggle("open");
 
-  document
-  .getElementById("overlay")
-  .classList
-  .toggle("open");
+
+document.getElementById("overlay")
+.classList.toggle("open");
 
 
 }
+
+
+
+
+/* =========================================================
+   FLIP EPISODE CARDS
+========================================================= */
+
+
+const cards = document.querySelectorAll(".flip-card");
+
+
+cards.forEach(card => {
+
+
+card.addEventListener("click",()=>{
+
+
+card.classList.toggle("flipped");
+
+
+});
+
+
+});
 
 
 </script>
@@ -560,6 +603,5 @@ function toggleMenu() {
 
 
 </body>
-
 
 </html>

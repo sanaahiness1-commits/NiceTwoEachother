@@ -151,3 +151,25 @@ if (audio && btn) {
 
 
 }
+/* =========================================================
+   FLIP EPISODE CARDS
+   - Click image to show Spotify
+   - Click again to return to image
+========================================================= */
+
+const cards = document.querySelectorAll(".flip-card");
+
+cards.forEach(card => {
+
+  card.addEventListener("click", function(event) {
+
+    // prevents clicks inside Spotify from interfering
+    if (event.target.tagName !== "IFRAME") {
+
+      card.classList.toggle("flipped");
+
+    }
+
+  });
+
+});
